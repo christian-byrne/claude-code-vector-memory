@@ -24,16 +24,13 @@ echo "✅ Virtual environment activated"
 # Install dependencies
 echo -e "\n📚 Installing dependencies..."
 pip install --upgrade pip
-pip install sentence-transformers chromadb rich spacy pytest
+pip install -r requirements.txt
 
 # Download spacy model
 echo -e "\n🌐 Downloading spaCy language model..."
 python -m spacy download en_core_web_sm || true
 
-# Create requirements.txt
-echo -e "\n📄 Creating requirements.txt..."
-pip freeze > requirements.txt
-echo "✅ requirements.txt created"
+echo "✅ Dependencies installed"
 
 # Make scripts executable
 echo -e "\n🔧 Making scripts executable..."

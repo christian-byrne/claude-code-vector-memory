@@ -9,16 +9,22 @@ Give Claude persistent memory across conversations by indexing and searching you
 ```bash
 git clone <this-repo>
 cd claude-code-vector-memory
+
+# Complete setup with Claude Code integration
 ./scripts/setup-all.sh  # Linux/macOS
-# OR
+python setup-all.py     # Windows
+
+# Basic setup only
+./scripts/setup.sh      # Linux/macOS  
 python setup.py         # Windows
 ```
 
-The setup script automatically:
+The complete setup automatically:
 ✅ Creates Python environment  
 ✅ Installs dependencies  
 ✅ Sets up Claude Code integration  
 ✅ Creates global search command  
+✅ Runs health checks  
 
 ### Start Searching
 
