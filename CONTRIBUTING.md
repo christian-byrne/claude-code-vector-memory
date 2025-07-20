@@ -12,7 +12,7 @@ Thank you for your interest in contributing! This document provides guidelines f
    ```
 3. **Set up the development environment**:
    ```bash
-   ./setup.sh
+   ./scripts/setup.sh
    ```
 
 ## Development Workflow
@@ -28,7 +28,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 3. **Test your changes**:
    ```bash
-   ./run_tests.sh
+   ./scripts/run_tests.sh
    python scripts/health_check.py
    ```
 

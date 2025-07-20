@@ -5,7 +5,7 @@ You are performing a comprehensive health check on the semantic memory system.
 ## Tasks to Complete
 
 1. **Check Database Status**
-   - Verify ChromaDB is accessible at `~/agents/semantic-memory-system/chroma_db/`
+   - Verify ChromaDB is accessible at `~/agents/claude-code-vector-memory/chroma_db/`
    - Count total indexed summaries
    - Check for any corrupted entries
 
@@ -74,4 +74,4 @@ Present findings in a structured report:
 3. [Add metadata to: ...]
 ```
 
-Use the Python scripts at `~/agents/semantic-memory-system/scripts/` to gather this information or run `~/agents/semantic-memory-system/scripts/health_check.py` directly.
+Use the Python scripts at `~/agents/claude-code-vector-memory/scripts/` to gather this information or run `~/agents/claude-code-vector-memory/scripts/health_check.py` directly.

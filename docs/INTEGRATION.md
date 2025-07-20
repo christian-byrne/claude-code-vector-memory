@@ -13,8 +13,8 @@ The integration enables Claude Code to automatically search through your previou
 The setup script handles most integration automatically:
 
 ```bash
-cd ~/agents/semantic-memory-system
-./setup.sh
+cd ~/agents/claude-code-vector-memory
+./scripts/setup.sh
 ```
 
 This will:
@@ -48,7 +48,7 @@ Add the Memory Integration section to your `~/.claude/CLAUDE.md`:
 CRITICAL: Before starting ANY new task, you MUST search through your previous conversations with this user:
 
 1. **Extract key terms** from the user's request (technologies, components, concepts)
-2. **Run semantic search**: `~/agents/semantic-memory-system/search.sh "extracted key terms"`
+2. **Run semantic search**: `~/agents/claude-code-vector-memory/scripts/search.sh "extracted key terms"`
 3. **Review results** and identify relevant past work
 4. **Present memory recap** to user showing what related work you've done before
 5. **Ask user** if they want to build on previous approaches or start fresh
@@ -105,8 +105,8 @@ Once integrated, Claude Code will automatically:
 claude-memory-search "search terms"
 
 # Or from the project directory
-cd ~/agents/semantic-memory-system
-./search.sh "search terms"
+cd ~/agents/claude-code-vector-memory
+./scripts/search.sh "search terms"
 ```
 
 ## Configuration
@@ -187,18 +187,18 @@ Claude: [Proceeds with implementation using established patterns]
 
 1. **Check installation**:
    ```bash
-   cd ~/agents/semantic-memory-system
+   cd ~/agents/claude-code-vector-memory
    python scripts/health_check.py
    ```
 
 2. **Verify database**:
    ```bash
-   ./search.sh "test query"
+   ./scripts/search.sh "test query"
    ```
 
 3. **Rebuild index**:
    ```bash
-   ./reindex.sh
+   ./scripts/reindex.sh
    ```
 
 ### Commands Not Found
@@ -227,7 +227,7 @@ Claude: [Proceeds with implementation using established patterns]
 3. **Rebuild with better metadata**:
    ```bash
    python scripts/add_metadata_to_summaries.py
-   ./reindex.sh
+   ./scripts/reindex.sh
    ```
 
 ## Advanced Integration
@@ -243,7 +243,7 @@ To use a different embedding model:
 
 2. **Rebuild index**:
    ```bash
-   ./reindex.sh
+   ./scripts/reindex.sh
    ```
 
 3. **Test performance**:
@@ -273,10 +273,10 @@ After integration, verify everything works:
 
 ```bash
 # Run full health check
-python ~/agents/semantic-memory-system/scripts/health_check.py
+python ~/agents/claude-code-vector-memory/scripts/health_check.py
 
 # Test search functionality
-~/agents/semantic-memory-system/search.sh "test search"
+~/agents/claude-code-vector-memory/scripts/search.sh "test search"
 
 # Verify Claude Code can access commands
 # (Start Claude Code session and try /system:semantic-memory-search)

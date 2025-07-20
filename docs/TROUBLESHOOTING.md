@@ -29,7 +29,7 @@ This guide covers common issues and their solutions for claude-code-vector-memor
 3. **Fix permissions**:
    ```bash
    chmod +x venv/bin/activate
-   chmod +x *.sh
+   chmod +x scripts/*.sh
    ```
 
 ### Dependency Installation Failures
@@ -180,7 +180,7 @@ This guide covers common issues and their solutions for claude-code-vector-memor
 2. **Optimize ChromaDB**:
    ```bash
    # Rebuild database with optimization
-   ./reindex.sh
+   ./scripts/reindex.sh
    ```
 
 3. **Reduce embedding dimensions** (advanced):
@@ -209,7 +209,7 @@ This guide covers common issues and their solutions for claude-code-vector-memor
    ```bash
    mkdir ~/.claude/archived-summaries
    mv ~/.claude/compacted-summaries/summary-2024-*.md ~/.claude/archived-summaries/
-   ./reindex.sh
+   ./scripts/reindex.sh
    ```
 
 ## Integration Issues
@@ -303,7 +303,7 @@ This guide covers common issues and their solutions for claude-code-vector-memor
 
 3. **Validate with test search**:
    ```bash
-   ./search.sh "test query"
+   ./scripts/search.sh "test query"
    ```
 
 ## System-Specific Issues
@@ -332,13 +332,13 @@ This guide covers common issues and their solutions for claude-code-vector-memor
 **Solutions**:
 1. **Use WSL paths consistently**:
    ```bash
-   cd /home/username/agents/semantic-memory-system
+   cd /home/username/agents/claude-code-vector-memory
    ```
 
 2. **Fix line endings**:
    ```bash
-   dos2unix *.sh
-   chmod +x *.sh
+   dos2unix scripts/*.sh
+   chmod +x scripts/*.sh
    ```
 
 3. **Install Windows dependencies**:
@@ -357,9 +357,9 @@ pip --version
 uname -a
 
 # Project status
-cd ~/agents/semantic-memory-system
+cd ~/agents/claude-code-vector-memory
 python scripts/health_check.py
-./search.sh "diagnostic test"
+./scripts/search.sh "diagnostic test"
 
 # Environment check
 which python3
@@ -389,5 +389,5 @@ If troubleshooting doesn't resolve your issue:
 
 Include the output of:
 ```bash
-python ~/agents/semantic-memory-system/scripts/health_check.py > health_report.txt
+python ~/agents/claude-code-vector-memory/scripts/health_check.py > health_report.txt
 ```

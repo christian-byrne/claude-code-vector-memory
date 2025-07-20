@@ -28,7 +28,7 @@ This document describes the technical architecture of claude-code-vector-memory.
 
 ### 1. Vector Database (ChromaDB)
 - **Purpose**: Persistent storage of document embeddings and metadata
-- **Location**: `~/agents/semantic-memory-system/chroma_db/`
+- **Location**: `~/agents/claude-code-vector-memory/chroma_db/`
 - **Collections**: Single collection named "claude_summaries"
 - **Dimensions**: 384-dimensional vectors from sentence transformers
 
@@ -119,7 +119,7 @@ hybrid_score = (0.7 × semantic_similarity) +
 ## File Structure
 
 ```
-semantic-memory-system/
+claude-code-vector-memory/
 ├── scripts/
 │   ├── index_summaries.py      # Indexing logic
 │   ├── memory_search.py        # Search implementation

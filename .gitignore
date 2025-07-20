@@ -48,6 +48,7 @@ Thumbs.db
 # ChromaDB
 chroma_db/
 *.sqlite3
+chroma_db_backup_*/
 
 # Testing
 .pytest_cache/

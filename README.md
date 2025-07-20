@@ -1,6 +1,43 @@
 # Semantic Memory System for Claude Code
 
-A semantic search system that indexes Claude Code session summaries to provide persistent memory and context across conversations.
+Give Claude persistent memory across conversations by indexing and searching your session summaries.
+
+## 🚀 Quick Start
+
+### One-Command Setup
+
+```bash
+git clone <this-repo>
+cd claude-code-vector-memory
+./scripts/setup-all.sh  # Linux/macOS
+# OR
+python setup.py         # Windows
+```
+
+The setup script automatically:
+✅ Creates Python environment  
+✅ Installs dependencies  
+✅ Sets up Claude Code integration  
+✅ Creates global search command  
+
+### Start Searching
+
+```bash
+# From anywhere (after setup)
+claude-memory-search "vue component implementation"
+
+# From this directory
+./scripts/search.sh "your query"    # Linux/macOS
+python search.py "your query"       # Windows
+
+# In Claude Code
+/system:semantic-memory-search your query
+```
+
+### Add Your Summaries
+
+1. Place summary files in `claude_summaries/`
+2. Run: `./scripts/reindex.sh` (Linux/macOS) or `python scripts/index_summaries.py` (Windows)
 
 ## Features
 
@@ -9,50 +46,34 @@ A semantic search system that indexes Claude Code session summaries to provide p
 - **Rich Metadata**: Extracts titles, dates, technologies, file paths, and more
 - **ChromaDB Backend**: Fast vector similarity search with persistent storage
 - **Beautiful CLI**: Rich terminal output with tables and formatted results
-- **Health Monitoring**: Built-in diagnostics and quality checks
-- **Unit Tests**: Comprehensive test coverage for reliability
-
-## Quick Start
-
-```bash
-# From anywhere in the system (if claude-memory-search is in PATH)
-claude-memory-search "vue component implementation"
-
-# Or from the semantic-memory-system directory:
-cd ~/agents/semantic-memory-system
-
-# Initial setup (first time only)
-./setup.sh
-
-# Search for past work
-./search.sh "vue component implementation"
-
-# Run health check
-python scripts/health_check.py
-
-# Run all tests
-./run_tests.sh
-```
+- **Cross-Platform**: Works on Linux, macOS, and Windows
+- **Claude Code Integration**: Automatic memory search before every task
 
 ## Installation
 
-1. Ensure you're in the semantic-memory-system directory
-2. Run the setup script:
+1. Ensure you're in the claude-code-vector-memory directory
+2. Run the complete setup (recommended):
    ```bash
-   ./setup.sh
+   ./scripts/setup-all.sh
    ```
    This will:
    - Create virtual environment
    - Install all dependencies
    - Build initial index
+   - Set up Claude Code integration
+   - Create global search command
    - Run health check
+   
+   Or for basic setup only:
+   ```bash
+   ./scripts/setup.sh
+   ```
 
-3. Dependencies installed:
-   - sentence-transformers
-   - chromadb
-   - rich
-   - spacy
-   - pytest
+3. Core dependencies installed:
+   - sentence-transformers (embeddings)
+   - chromadb (vector storage)
+   - rich (terminal UI)
+   - PyYAML (configuration)
 
 ## Usage
 
@@ -86,7 +107,7 @@ Shows what information can be extracted from your summaries.
 ### 4. Test Everything
 
 ```bash
-python test_system.py
+python tests/test_system.py
 ```
 
 Runs through all components to verify the system works correctly.
@@ -131,10 +152,10 @@ New summaries now include rich metadata for better search. Use:
 
 ### Shell Scripts
 
-- `./setup.sh` - Initial setup and configuration
-- `./search.sh <query>` - Quick search interface
-- `./reindex.sh` - Rebuild the entire index (with backup)
-- `./run_tests.sh` - Run all tests and health checks
+- `./scripts/setup.sh` - Initial setup and configuration
+- `./scripts/search.sh <query>` - Quick search interface
+- `./scripts/reindex.sh` - Rebuild the entire index (with backup)
+- `./scripts/run_tests.sh` - Run all tests and health checks
 
 ### Python Scripts
 
@@ -147,7 +168,7 @@ New summaries now include rich metadata for better search. Use:
 
 Run the test suite with:
 ```bash
-./run_tests.sh
+./scripts/run_tests.sh
 ```
 
 Or run specific tests:
@@ -160,7 +181,7 @@ python -m pytest tests/test_search_functionality.py -v
 
 The vector database is stored at:
 ```
-semantic-memory-system/chroma_db/
+claude-code-vector-memory/chroma_db/
 ```
 
 This persists between sessions, so you only need to index new summaries.
