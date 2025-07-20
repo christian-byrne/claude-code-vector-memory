@@ -1,8 +1,7 @@
-[tool.ruff]
 # Exclude common directories
 exclude = [
     ".git",
-    ".venv",
+    ".venv", 
     "venv",
     "__pycache__",
     "build",
@@ -13,6 +12,7 @@ exclude = [
 # Same as Black's line length
 line-length = 88
 
+[lint]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default
 select = [
     "E",  # pycodestyle errors
@@ -34,14 +34,14 @@ unfixable = []
 # Allow unused variables when underscore-prefixed
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-[tool.ruff.per-file-ignores]
+[lint.per-file-ignores]
 # Tests can use magic values and assertions
 "tests/**/*.py" = ["PLR2004", "S101"]
 
-[tool.ruff.isort]
+[lint.isort]
 # Group imports by type
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
-[tool.ruff.mccabe]
+[lint.mccabe]
 # Maximum cyclomatic complexity
 max-complexity = 10
