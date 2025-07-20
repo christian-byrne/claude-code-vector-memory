@@ -32,7 +32,7 @@ Building a semantic search system for Claude Code session summaries to create pe
 ## Implementation Steps
 
 ### 1. Environment Setup
-- Create Python venv in semantic-memory-system directory
+- Create Python venv in claude-code-vector-memory directory
 - Install dependencies:
   - sentence-transformers
   - sqlite-vss

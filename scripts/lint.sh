@@ -5,7 +5,7 @@ set -e
 
 # Ensure we're in the right directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/.."
 
 echo "🔍 Running code quality checks"
 echo "=============================="

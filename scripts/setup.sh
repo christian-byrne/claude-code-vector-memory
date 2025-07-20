@@ -8,7 +8,7 @@ echo "===================================="
 
 # Ensure we're in the right directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/.."
 
 # Check if venv exists
 if [ ! -d "venv" ]; then
@@ -38,8 +38,8 @@ echo "✅ requirements.txt created"
 # Make scripts executable
 echo -e "\n🔧 Making scripts executable..."
 chmod +x scripts/*.py
-chmod +x *.sh
-chmod +x test_system.py
+chmod +x scripts/*.sh
+chmod +x tests/test_system.py || true
 echo "✅ Scripts are now executable"
 
 # Initial indexing
@@ -53,9 +53,9 @@ python scripts/health_check.py
 echo -e "\n✅ Setup completed!"
 echo ""
 echo "You can now use:"
-echo "  ./search.sh 'your search query'    - Search memories"
-echo "  ./run_tests.sh                     - Run all tests"
-echo "  ./reindex.sh                       - Rebuild the index"
+echo "  ./scripts/search.sh 'your search query'    - Search memories"
+echo "  ./scripts/run_tests.sh                     - Run all tests"
+echo "  ./scripts/reindex.sh                       - Rebuild the index"
 echo ""
 echo "Or use the Python scripts directly:"
 echo "  python scripts/memory_search.py 'query'"

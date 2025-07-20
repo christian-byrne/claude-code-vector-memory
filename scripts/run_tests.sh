@@ -8,7 +8,7 @@ echo "======================================"
 
 # Ensure we're in the right directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/.."
 
 # Activate virtual environment
 if [ -f "venv/bin/activate" ]; then
@@ -26,7 +26,7 @@ python -m pytest tests/ -v --color=yes || true
 
 # Run integration test
 echo -e "\n🔄 Running integration tests..."
-python test_system.py
+python tests/test_system.py
 
 # Run health check
 echo -e "\n🏥 Running health check..."

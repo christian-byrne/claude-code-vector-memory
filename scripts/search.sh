@@ -5,7 +5,7 @@ set -e
 
 # Ensure we're in the right directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/.."
 
 # Activate virtual environment
 if [ -f "venv/bin/activate" ]; then
@@ -17,8 +17,8 @@ fi
 
 # Check if query provided
 if [ $# -eq 0 ]; then
-    echo "Usage: ./search.sh <search query>"
-    echo "Example: ./search.sh 'vue component implementation'"
+    echo "Usage: ./scripts/search.sh <search query>"
+    echo "Example: ./scripts/search.sh 'vue component implementation'"
     exit 1
 fi
 

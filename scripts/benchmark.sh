@@ -4,7 +4,7 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/.."
 
 echo "⏱️  Semantic Memory System Benchmark"
 echo "====================================="
@@ -19,7 +19,7 @@ fi
 
 # Check if system is ready
 if [ ! -d "chroma_db" ]; then
-    echo "❌ Database not found. Please run ./setup.sh first"
+    echo "❌ Database not found. Please run ./scripts/setup.sh first"
     exit 1
 fi
 

@@ -4,7 +4,7 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/.."
 
 BACKUP_DIR="backups"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -30,7 +30,7 @@ backup_database() {
 restore_database() {
     if [ -z "$1" ]; then
         echo "❌ Please specify backup file to restore"
-        echo "Usage: ./backup.sh restore <backup_file>"
+        echo "Usage: ./scripts/backup.sh restore <backup_file>"
         echo "Available backups:"
         ls -la "$BACKUP_DIR"/chroma_db_*.tar.gz 2>/dev/null || echo "  No backups found"
         exit 1
@@ -78,7 +78,7 @@ list_backups() {
 }
 
 show_usage() {
-    echo "Usage: ./backup.sh [command]"
+    echo "Usage: ./scripts/backup.sh [command]"
     echo ""
     echo "Commands:"
     echo "  backup           Create a new database backup"
@@ -87,9 +87,9 @@ show_usage() {
     echo "  help             Show this help message"
     echo ""
     echo "Examples:"
-    echo "  ./backup.sh backup"
-    echo "  ./backup.sh restore chroma_db_20231201_143022.tar.gz"
-    echo "  ./backup.sh list"
+    echo "  ./scripts/backup.sh backup"
+    echo "  ./scripts/backup.sh restore chroma_db_20231201_143022.tar.gz"
+    echo "  ./scripts/backup.sh list"
 }
 
 # Main script logic

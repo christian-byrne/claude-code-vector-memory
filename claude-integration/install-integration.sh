@@ -56,7 +56,7 @@ else
 # Callable from anywhere in the system
 
 # Ensure we're using the right directory
-MEMORY_DIR="$HOME/agents/semantic-memory-system"
+MEMORY_DIR="$HOME/agents/claude-code-vector-memory"
 
 if [ ! -d "$MEMORY_DIR" ]; then
     echo "❌ Semantic memory system not found at $MEMORY_DIR"
@@ -72,7 +72,7 @@ fi
 
 # Change to memory system directory and run search
 cd "$MEMORY_DIR"
-./search.sh "$@"
+./scripts/search.sh "$@"
 EOF
     
     chmod +x ~/agents/claude-memory-search
