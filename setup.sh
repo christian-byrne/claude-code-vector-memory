@@ -29,6 +29,6 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run the Python setup script
-python setup.py "$@"
+python3 setup.py "$@"
 
 # Note: We don't deactivate because the user might want to continue using the venv

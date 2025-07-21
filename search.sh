@@ -16,4 +16,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run the Python search script with all arguments
-python search.py "$@"
+python3 search.py "$@"
