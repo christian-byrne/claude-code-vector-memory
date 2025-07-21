@@ -75,7 +75,11 @@ class MetadataAdder:
             if match:
                 project = match.group(1)
                 # Clean up common prefixes
-                if project.startswith("comfyui-") or "comfyui" in project.lower() or project not in ["home", "projects", "user", "Users"]:
+                if (
+                    project.startswith("comfyui-")
+                    or "comfyui" in project.lower()
+                    or project not in ["home", "projects", "user", "Users"]
+                ):
                     return project
 
         return None

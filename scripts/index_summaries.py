@@ -164,7 +164,9 @@ class SummaryIndexer:
     def index_all_summaries(self) -> None:
         """Index all summaries in the directory."""
         if not SUMMARIES_DIR.exists():
-            console.print(f"[yellow]Creating summaries directory: {SUMMARIES_DIR}[/yellow]")
+            console.print(
+                f"[yellow]Creating summaries directory: {SUMMARIES_DIR}[/yellow]"
+            )
             SUMMARIES_DIR.mkdir(parents=True, exist_ok=True)
 
         # Get all markdown files
