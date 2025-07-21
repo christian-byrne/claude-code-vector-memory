@@ -105,8 +105,22 @@ def setup_claude_integration():
         
         # Write to destination
         dest = claude_commands / cmd_file.name
-        dest.write_text(content)
-        print(f"✅ Installed {cmd_file.name}")
+        if dest.exists():
+            # Check if content is different
+            existing_content = dest.read_text()
+            if existing_content != content:
+                print(f"⚠️  {cmd_file.name} already exists with different content")
+                response = input("   Overwrite? (y/n): ")
+                if response.lower() in ["y", "yes"]:
+                    dest.write_text(content)
+                    print(f"✅ Updated {cmd_file.name}")
+                else:
+                    print(f"⏭️  Skipped {cmd_file.name}")
+            else:
+                print(f"✅ {cmd_file.name} already up to date")
+        else:
+            dest.write_text(content)
+            print(f"✅ Installed {cmd_file.name}")
     
     # Handle CLAUDE.md
     claude_md = Path.home() / ".claude" / "CLAUDE.md"
