@@ -12,7 +12,8 @@ Thank you for your interest in contributing! This document provides guidelines f
    ```
 3. **Set up the development environment**:
    ```bash
-   ./scripts/setup.sh
+   ./setup.sh  # On Linux/macOS
+   setup.bat   # On Windows
    ```
 
 ## Development Workflow

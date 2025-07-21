@@ -19,7 +19,7 @@ fi
 
 # Check if system is ready
 if [ ! -d "chroma_db" ]; then
-    echo "❌ Database not found. Please run ./scripts/setup.sh first"
+    echo "❌ Database not found. Please run ./setup.sh first"
     exit 1
 fi
 

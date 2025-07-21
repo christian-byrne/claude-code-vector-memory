@@ -180,7 +180,7 @@ This guide covers common issues and their solutions for claude-code-vector-memor
 2. **Optimize ChromaDB**:
    ```bash
    # Rebuild database with optimization
-   ./scripts/reindex.sh
+   python reindex.py
    ```
 
 3. **Reduce embedding dimensions** (advanced):
@@ -209,7 +209,7 @@ This guide covers common issues and their solutions for claude-code-vector-memor
    ```bash
    mkdir ~/.claude/archived-summaries
    mv ~/.claude/compacted-summaries/summary-2024-*.md ~/.claude/archived-summaries/
-   ./scripts/reindex.sh
+   python reindex.py
    ```
 
 ## Integration Issues
@@ -303,7 +303,8 @@ This guide covers common issues and their solutions for claude-code-vector-memor
 
 3. **Validate with test search**:
    ```bash
-   ./scripts/search.sh "test query"
+   ./search.sh "test query"  # On Linux/macOS
+   search.bat "test query"   # On Windows
    ```
 
 ## System-Specific Issues
@@ -359,7 +360,7 @@ uname -a
 # Project status
 cd ~/agents/claude-code-vector-memory
 python scripts/health_check.py
-./scripts/search.sh "diagnostic test"
+./search.sh "diagnostic test"
 
 # Environment check
 which python3

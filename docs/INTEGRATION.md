@@ -14,7 +14,8 @@ The setup script handles most integration automatically:
 
 ```bash
 cd ~/agents/claude-code-vector-memory
-./scripts/setup.sh
+./setup.sh  # On Linux/macOS
+setup.bat   # On Windows
 ```
 
 This will:
@@ -48,7 +49,7 @@ Add the Memory Integration section to your `~/.claude/CLAUDE.md`:
 CRITICAL: Before starting ANY new task, you MUST search through your previous conversations with this user:
 
 1. **Extract key terms** from the user's request (technologies, components, concepts)
-2. **Run semantic search**: `~/agents/claude-code-vector-memory/scripts/search.sh "extracted key terms"`
+2. **Run semantic search**: `~/agents/claude-code-vector-memory/search.sh "extracted key terms"`
 3. **Review results** and identify relevant past work
 4. **Present memory recap** to user showing what related work you've done before
 5. **Ask user** if they want to build on previous approaches or start fresh
@@ -106,7 +107,8 @@ claude-memory-search "search terms"
 
 # Or from the project directory
 cd ~/agents/claude-code-vector-memory
-./scripts/search.sh "search terms"
+./search.sh "search terms"  # On Linux/macOS
+search.bat "search terms"   # On Windows
 ```
 
 ## Configuration
@@ -193,12 +195,12 @@ Claude: [Proceeds with implementation using established patterns]
 
 2. **Verify database**:
    ```bash
-   ./scripts/search.sh "test query"
+   ./search.sh "test query"
    ```
 
 3. **Rebuild index**:
    ```bash
-   ./scripts/reindex.sh
+   python reindex.py
    ```
 
 ### Commands Not Found
@@ -227,7 +229,7 @@ Claude: [Proceeds with implementation using established patterns]
 3. **Rebuild with better metadata**:
    ```bash
    python scripts/add_metadata_to_summaries.py
-   ./scripts/reindex.sh
+   python reindex.py
    ```
 
 ## Advanced Integration
@@ -243,7 +245,7 @@ To use a different embedding model:
 
 2. **Rebuild index**:
    ```bash
-   ./scripts/reindex.sh
+   python reindex.py
    ```
 
 3. **Test performance**:

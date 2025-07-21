@@ -4,37 +4,33 @@ Give Claude persistent memory across conversations by indexing and searching you
 
 ## 🚀 Quick Start
 
-### One-Command Setup
+### Setup (One Time)
 
 ```bash
 git clone <this-repo>
 cd claude-code-vector-memory
 
-# Complete setup with Claude Code integration
-./scripts/setup-all.sh  # Linux/macOS
-python setup-all.py     # Windows
-
-# Basic setup only
-./scripts/setup.sh      # Linux/macOS  
-python setup.py         # Windows
+# Run setup
+./setup.sh      # Linux/macOS
+setup.bat       # Windows
 ```
 
-The complete setup automatically:
+The setup automatically:
 ✅ Creates Python environment  
 ✅ Installs dependencies  
 ✅ Sets up Claude Code integration  
 ✅ Creates global search command  
-✅ Runs health checks  
+✅ Configures everything for your OS
 
-### Start Searching
+### Start Using
 
 ```bash
-# From anywhere (after setup)
-claude-memory-search "vue component implementation"
+# Search your memories
+./search.sh "your query"    # Linux/macOS
+search.bat "your query"     # Windows
 
-# From this directory
-./scripts/search.sh "your query"    # Linux/macOS
-python search.py "your query"       # Windows
+# From anywhere (after setup)
+claude-memory-search "your query"
 
 # In Claude Code
 /system:semantic-memory-search your query
@@ -43,7 +39,7 @@ python search.py "your query"       # Windows
 ### Add Your Summaries
 
 1. Place summary files in `claude_summaries/`
-2. Run: `./scripts/reindex.sh` (Linux/macOS) or `python scripts/index_summaries.py` (Windows)
+2. Run: `python reindex.py`
 
 ## Features
 
@@ -55,146 +51,45 @@ python search.py "your query"       # Windows
 - **Cross-Platform**: Works on Linux, macOS, and Windows
 - **Claude Code Integration**: Automatic memory search before every task
 
-## Installation
-
-1. Ensure you're in the claude-code-vector-memory directory
-2. Run the complete setup (recommended):
-   ```bash
-   ./scripts/setup-all.sh
-   ```
-   This will:
-   - Create virtual environment
-   - Install all dependencies
-   - Build initial index
-   - Set up Claude Code integration
-   - Create global search command
-   - Run health check
-   
-   Or for basic setup only:
-   ```bash
-   ./scripts/setup.sh
-   ```
-
-3. Core dependencies installed:
-   - sentence-transformers (embeddings)
-   - chromadb (vector storage)
-   - rich (terminal UI)
-   - PyYAML (configuration)
-
-## Usage
-
-### 1. Index Your Summaries (First Time)
-
-```bash
-python scripts/index_summaries.py
-```
-
-This scans `~/.claude/compacted-summaries/` and creates embeddings for each summary.
-
-### 2. Search for Past Sessions
-
-```bash
-python scripts/memory_search.py "vue widget implementation"
-```
-
-Returns the top 3 most relevant past sessions with:
-- Similarity scores
-- Brief previews
-- File paths to full summaries
-
-### 3. Analyze Metadata
-
-```bash
-python scripts/extract_metadata.py
-```
-
-Shows what information can be extracted from your summaries.
-
-### 4. Test Everything
-
-```bash
-python tests/test_system.py
-```
-
-Runs through all components to verify the system works correctly.
-
 ## How It Works
 
-1. **Indexing**: 
-   - Reads all markdown files from `~/.claude/compacted-summaries/`
-   - Extracts metadata (title, date, technologies, etc.)
-   - Generates embeddings using `all-MiniLM-L6-v2` model
-   - Stores in ChromaDB with metadata
+1. **Index**: Scans your Claude summaries and creates semantic embeddings
+2. **Search**: Finds similar past sessions using vector similarity
+3. **Integrate**: Claude automatically searches memories before each task
+4. **Learn**: Builds on past solutions and approaches
 
-2. **Searching**:
-   - Converts query to embedding
-   - Finds nearest neighbors in vector space
-   - Calculates hybrid score with recency weighting
-   - Returns top results above similarity threshold
+## Project Structure
 
-3. **Scoring Algorithm**:
-   ```
-   hybrid_score = (0.7 × semantic_similarity) + 
-                  (0.2 × recency_score) + 
-                  (0.1 × complexity_bonus)
-   ```
-
-## Integration with Claude Code
-
-The system is now fully integrated with Claude Code:
-
-### 1. Automatic Memory Search
-Claude Code will automatically search for relevant past work before starting new tasks. This is configured in `~/.claude/CLAUDE.md`.
-
-### 2. Manual Memory Search Command
-Use the command: `/system:semantic-memory-search <your task description>`
-
-### 3. Health Check Command
-Use the command: `/system:memory-health-check`
-
-### 4. Enhanced Summary Generation
-New summaries now include rich metadata for better search. Use:
-`/project:AGENT-summarize-and-log-current-session-v2`
-
-### Shell Scripts
-
-- `./scripts/setup.sh` - Initial setup and configuration
-- `./scripts/search.sh <query>` - Quick search interface
-- `./scripts/reindex.sh` - Rebuild the entire index (with backup)
-- `./scripts/run_tests.sh` - Run all tests and health checks
-
-### Python Scripts
-
-- `scripts/index_summaries.py` - Index summaries into ChromaDB
-- `scripts/memory_search.py` - Semantic search functionality
-- `scripts/health_check.py` - System diagnostics and reporting
-- `scripts/extract_metadata.py` - Metadata analysis tools
-
-### Testing
-
-Run the test suite with:
-```bash
-./scripts/run_tests.sh
+```
+claude-code-vector-memory/
+├── setup.sh/setup.bat    # Platform-specific setup scripts
+├── search.sh/search.bat  # Platform-specific search scripts
+├── reindex.py           # Reindex summaries
+├── scripts/             # Core Python scripts
+│   ├── index_summaries.py
+│   ├── memory_search.py
+│   └── health_check.py
+└── claude-integration/  # Claude Code integration files
 ```
 
-Or run specific tests:
-```bash
-python -m pytest tests/test_metadata_extraction.py -v
-python -m pytest tests/test_search_functionality.py -v
-```
+## Requirements
 
-## Database Location
+- Python 3.8+
+- Claude Code
+- Your Claude session summaries in `~/.claude/compacted-summaries/`
 
-The vector database is stored at:
-```
-claude-code-vector-memory/chroma_db/
-```
+## Troubleshooting
 
-This persists between sessions, so you only need to index new summaries.
+- **Permission denied?** Run: `chmod +x *.sh` (Linux/macOS)
+- **Command not found?** Restart your shell after setup
+- **No results?** Make sure you've added summaries and run `python reindex.py`
 
-## Extending the System
+For more help, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
 
-- **Add more metadata**: Edit `extract_metadata()` in index_summaries.py
-- **Adjust scoring**: Modify weights in `search()` method
-- **Change embedding model**: Update `EMBEDDING_MODEL` constant
-- **Filter by project**: Add project-based filtering to search
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+
+## License
+
+MIT License - see LICENSE file for details.

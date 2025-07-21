@@ -7,7 +7,7 @@ echo "🔗 Installing Claude Code Integration"
 echo "===================================="
 
 # Check if we're in the right directory
-if [ ! -f "scripts/memory_search.py" ]; then
+if [ ! -f "search.py" ]; then
     echo "❌ Please run this script from the claude-code-vector-memory directory"
     exit 1
 fi
@@ -72,7 +72,7 @@ fi
 
 # Change to memory system directory and run search
 cd "$MEMORY_DIR"
-./scripts/search.sh "$@"
+./search.sh "$@"
 EOF
     
     chmod +x ~/agents/claude-memory-search
@@ -132,7 +132,7 @@ echo ""
 echo "Next steps:"
 echo "1. Add Memory Integration section to ~/.claude/CLAUDE.md (see claude-integration/CLAUDE.md-snippet.md)"
 echo "2. Restart your shell or run: source ~/.bashrc (or ~/.zshrc)"
-echo "3. Test with: claude-memory-search 'test query'"
+echo "3. Test with: claude-memory-search 'test query' or ./search.sh 'test query'"
 echo "4. In Claude Code, try: /system:semantic-memory-search test query"
 echo ""
 echo "For help, see docs/INTEGRATION.md"
