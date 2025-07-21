@@ -23,12 +23,11 @@ def main():
         print(f"Error: {memory_search} not found")
         sys.exit(1)
 
-    # Run the search using the activated venv Python
-    venv_python = script_dir / "venv" / "bin" / "python3"
-    python_cmd = str(venv_python) if venv_python.exists() else sys.executable
-    
+    # Run the search using the current Python interpreter
+    # Note: This script should be called from the shell wrappers that ensure
+    # we're using the venv Python, so sys.executable should be correct
     try:
-        subprocess.run([python_cmd, str(memory_search), query], check=True)
+        subprocess.run([sys.executable, str(memory_search), query], check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error running search: {e}")
         sys.exit(1)

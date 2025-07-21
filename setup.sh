@@ -21,14 +21,6 @@ if [ ! -d "venv" ]; then
     fi
 fi
 
-# Activate virtual environment and run setup
-source venv/bin/activate
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to activate virtual environment"
-    exit 1
-fi
-
-# Run the Python setup script
-python3 setup.py "$@"
-
-# Note: We don't deactivate because the user might want to continue using the venv
+# Run setup using the venv Python directly (more reliable than activation)
+# This works regardless of shell environment or pyenv
+venv/bin/python setup.py "$@"
